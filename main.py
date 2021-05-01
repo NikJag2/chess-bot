@@ -81,7 +81,7 @@ async def on_message(message):
 
         basic_board = ''.join(['  ' if i == ' ' and n > 343 else i for n, i in enumerate(board.unicode(borders=True))])
         basic_board2 = basic_board.replace('-----------------','-----------------------',9)
-        clean_board = ''.join([' ' if i == '⭘' else i for i in basic_board2])
+        clean_board = ''.join(['    ' if i == '⭘' else i for i in basic_board2])
         embedVar = discord.Embed(title='Chess Match',description=f'<@{requester}> v <@{requestee}>\nWhite\'s turn',color=0xCCCCFF)
         embedVar.add_field(name='Board',value=f'```{clean_board}```')
 
@@ -109,7 +109,7 @@ async def on_message(message):
                     board.push(chess.Move.from_uci(message.content[len(prefix)+len('move')+1:]))
                     basic_board = ''.join(['  ' if i == ' ' and n > 343 else i for n, i in enumerate(board.unicode(borders=True))])
                     basic_board2 = basic_board.replace('-----------------','-----------------------',9)
-                    clean_board = ''.join([' ' if i == '⭘' else i for i in basic_board2])
+                    clean_board = ''.join(['    ' if i == '⭘' else i for i in basic_board2])
                     if board.is_checkmate():
                         embedVar = discord.Embed(title='Chess Match',description=f'<@{white}> v <@{black}>\nWhite wins',color=0xCCCCFF)
                         embedVar.add_field(name='Board',value=f'```{clean_board}```')
@@ -189,7 +189,7 @@ async def on_message(message):
                     board.push(chess.Move.from_uci(message.content[len(prefix)+len('move')+1:]))
                     basic_board = ''.join(['  ' if i == ' ' and n > 343 else i for n, i in enumerate(board.unicode(borders=True))])
                     basic_board2 = basic_board.replace('-----------------','-----------------------',9)
-                    clean_board = ''.join([' ' if i == '⭘' else i for i in basic_board2])
+                    clean_board = ''.join(['    ' if i == '⭘' else i for i in basic_board2])
                     if board.is_checkmate():
                         embedVar = discord.Embed(title='Chess Match',description=f'<@{white}> v <@{black}>\nBlack wins',color=0xCCCCFF)
                         embedVar.add_field(name='Board',value=f'```{clean_board}```')
