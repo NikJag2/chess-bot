@@ -34,7 +34,7 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    if message.content == 'test':
+    if message.content == 'test' and message.author.id == 542033277163274260:
         embedVar = discord.Embed(title="test", color=0xccccff)
         embedVar.add_field(name='test', value='```apache\ntest```', inline=False)
         await message.channel.send(embed=embedVar)
@@ -45,7 +45,7 @@ async def on_message(message):
     if len(message.mentions) > 0 and message.mentions[0].id == 835648004820041809 and message.author.id == 542033277163274260:
         await message.channel.send('cock and ball man go do work')
 
-    if message.content == 'quit':
+    if message.content == 'quit' and message.author.id == 542033277163274260:
         await message.channel.send('Killing bot')
         quit()
 
@@ -80,8 +80,7 @@ async def on_message(message):
                 requestee = key
 
         basic_board = ''.join(['  ' if i == ' ' and n > 343 else i for n, i in enumerate(board.unicode(borders=True))])
-        basic_board2 = basic_board.replace('-----------------','-----------------------',9)
-        clean_board = ''.join(['  ' if i == '⭘' else i for i in basic_board2])
+        clean_board = basic_board.replace('-----------------','-----------------------',9)
         embedVar = discord.Embed(title='Chess Match',description=f'<@{requester}> v <@{requestee}>\nWhite\'s turn',color=0xCCCCFF)
         embedVar.add_field(name='Board',value=f'```{clean_board}```')
 
@@ -108,8 +107,7 @@ async def on_message(message):
                 if chess.Move.from_uci(message.content[len(prefix)+len('move')+1:]) in board.legal_moves:
                     board.push(chess.Move.from_uci(message.content[len(prefix)+len('move')+1:]))
                     basic_board = ''.join(['  ' if i == ' ' and n > 343 else i for n, i in enumerate(board.unicode(borders=True))])
-                    basic_board2 = basic_board.replace('-----------------','-----------------------',9)
-                    clean_board = ''.join(['  ' if i == '⭘' else i for i in basic_board2])
+                    clean_board = basic_board.replace('-----------------','-----------------------',9)
                     if board.is_checkmate():
                         embedVar = discord.Embed(title='Chess Match',description=f'<@{white}> v <@{black}>\nWhite wins',color=0xCCCCFF)
                         embedVar.add_field(name='Board',value=f'```{clean_board}```')
@@ -141,7 +139,7 @@ async def on_message(message):
                         turn[0] = -1
                         reset()
                     else:
-                        embedVar = discord.Embed(title='Chess Match',description=f'<@{white}> v <@{black}>\nBlack\'s turn',color=0xCCCCFF)
+                        embedVar = discord.Embed(title='Chess Match',description=f'<@{white}> v <@{black}>\nBlack\'s turn',color=0x280738)
                         embedVar.add_field(name='Board',value=f'```{clean_board}```')
                         await message.channel.send(embed=embedVar)
                         turn[0] = 1
@@ -188,34 +186,33 @@ async def on_message(message):
                 if chess.Move.from_uci(message.content[len(prefix)+len('move')+1:]) in board.legal_moves:
                     board.push(chess.Move.from_uci(message.content[len(prefix)+len('move')+1:]))
                     basic_board = ''.join(['  ' if i == ' ' and n > 343 else i for n, i in enumerate(board.unicode(borders=True))])
-                    basic_board2 = basic_board.replace('-----------------','-----------------------',9)
-                    clean_board = ''.join(['  ' if i == '⭘' else i for i in basic_board2])
+                    clean_board = basic_board.replace('-----------------','-----------------------',9)
                     if board.is_checkmate():
-                        embedVar = discord.Embed(title='Chess Match',description=f'<@{white}> v <@{black}>\nBlack wins',color=0xCCCCFF)
+                        embedVar = discord.Embed(title='Chess Match',description=f'<@{white}> v <@{black}>\nBlack wins',color=0x280738)
                         embedVar.add_field(name='Board',value=f'```{clean_board}```')
                         turn[0] = -1
                         await message.channel.send(embed=embedVar)
                         reset()
                     elif board.is_stalemate():
-                        embedVar = discord.Embed(title='Chess Match',description=f'<@{white}> v <@{black}>\nStalemate',color=0xCCCCFF)
+                        embedVar = discord.Embed(title='Chess Match',description=f'<@{white}> v <@{black}>\nStalemate',color=0x280738)
                         embedVar.add_field(name='Board',value=f'```{clean_board}```')
                         await message.channel.send(embed=embedVar)
                         turn[0] = -1
                         reset()
                     elif board.is_insufficient_material():
-                        embedVar = discord.Embed(title='Chess Match',description=f'<@{white}> v <@{black}>\nStalemate',color=0xCCCCFF)
+                        embedVar = discord.Embed(title='Chess Match',description=f'<@{white}> v <@{black}>\nStalemate',color=0x280738)
                         embedVar.add_field(name='Board',value=f'```{clean_board}```')
                         await message.channel.send(embed=embedVar)
                         turn[0] = -1
                         reset()
                     elif board.can_claim_threefold_repetition():
-                        embedVar = discord.Embed(title='Chess Match',description=f'<@{white}> v <@{black}>\nStalemate',color=0xCCCCFF)
+                        embedVar = discord.Embed(title='Chess Match',description=f'<@{white}> v <@{black}>\nStalemate',color=0x280738)
                         embedVar.add_field(name='Board',value=f'```{clean_board}```')
                         await message.channel.send(embed=embedVar)
                         turn[0] = -1
                         reset()
                     elif board.can_claim_fifty_moves():
-                        embedVar = discord.Embed(title='Chess Match',description=f'<@{white}> v <@{black}>\nStalemate',color=0xCCCCFF)
+                        embedVar = discord.Embed(title='Chess Match',description=f'<@{white}> v <@{black}>\nStalemate',color=0x280738)
                         embedVar.add_field(name='Board',value=f'```{clean_board}```')
                         await message.channel.send(embed=embedVar)
                         turn[0] = -1
@@ -251,7 +248,7 @@ async def on_message(message):
             turn[0] = -1
             reset()
 
-    if message.content == 'players':
+    if message.content == 'players' and message.author.id == 542033277163274260:
         await message.channel.send(in_game_players)
 
 client.run(token)
