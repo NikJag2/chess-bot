@@ -114,30 +114,40 @@ async def on_message(message):
                         turn[0] = -1
                         await message.channel.send(embed=embedVar)
                         reset()
+                        del in_game_players[white]
+                        del in_game_players[black]
                     elif board.is_stalemate():
                         embedVar = discord.Embed(title='Chess Match',description=f'<@{white}> v <@{black}>\nStalemate',color=0xCCCCFF)
                         embedVar.add_field(name='Board',value=f'```{clean_board}```')
                         await message.channel.send(embed=embedVar)
                         turn[0] = -1
                         reset()
+                        del in_game_players[white]
+                        del in_game_players[black]
                     elif board.is_insufficient_material():
                         embedVar = discord.Embed(title='Chess Match',description=f'<@{white}> v <@{black}>\nStalemate',color=0xCCCCFF)
                         embedVar.add_field(name='Board',value=f'```{clean_board}```')
                         await message.channel.send(embed=embedVar)
                         turn[0] = -1
                         reset()
+                        del in_game_players[white]
+                        del in_game_players[black]
                     elif board.can_claim_threefold_repetition():
                         embedVar = discord.Embed(title='Chess Match',description=f'<@{white}> v <@{black}>\nStalemate',color=0xCCCCFF)
                         embedVar.add_field(name='Board',value=f'```{clean_board}```')
                         await message.channel.send(embed=embedVar)
                         turn[0] = -1
                         reset()
+                        del in_game_players[white]
+                        del in_game_players[black]
                     elif board.can_claim_fifty_moves():
                         embedVar = discord.Embed(title='Chess Match',description=f'<@{white}> v <@{black}>\nStalemate',color=0xCCCCFF)
                         embedVar.add_field(name='Board',value=f'```{clean_board}```')
                         await message.channel.send(embed=embedVar)
                         turn[0] = -1
                         reset()
+                        del in_game_players[white]
+                        del in_game_players[black]
                     else:
                         embedVar = discord.Embed(title='Chess Match',description=f'<@{white}> v <@{black}>\nBlack\'s turn',color=0x280738)
                         embedVar.add_field(name='Board',value=f'```{clean_board}```')
@@ -152,6 +162,8 @@ async def on_message(message):
             await message.channel.send(f'White resigns, <@{black}> wins')
             turn[0] = -1
             reset()
+            del in_game_players[white]
+            del in_game_players[black]
 
     elif str(message.author.id) in in_game_players and in_game_players[str(message.author.id)] == 'black' and turn[0] == 0 and message.content[len(prefix)-1] == prefix:
         if message.content[len(prefix):len(prefix) + len('resign')] == 'resign':
@@ -193,30 +205,40 @@ async def on_message(message):
                         turn[0] = -1
                         await message.channel.send(embed=embedVar)
                         reset()
+                        del in_game_players[white]
+                        del in_game_players[black]
                     elif board.is_stalemate():
                         embedVar = discord.Embed(title='Chess Match',description=f'<@{white}> v <@{black}>\nStalemate',color=0x280738)
                         embedVar.add_field(name='Board',value=f'```{clean_board}```')
                         await message.channel.send(embed=embedVar)
                         turn[0] = -1
                         reset()
+                        del in_game_players[white]
+                        del in_game_players[black]
                     elif board.is_insufficient_material():
                         embedVar = discord.Embed(title='Chess Match',description=f'<@{white}> v <@{black}>\nStalemate',color=0x280738)
                         embedVar.add_field(name='Board',value=f'```{clean_board}```')
                         await message.channel.send(embed=embedVar)
                         turn[0] = -1
                         reset()
+                        del in_game_players[white]
+                        del in_game_players[black]
                     elif board.can_claim_threefold_repetition():
                         embedVar = discord.Embed(title='Chess Match',description=f'<@{white}> v <@{black}>\nStalemate',color=0x280738)
                         embedVar.add_field(name='Board',value=f'```{clean_board}```')
                         await message.channel.send(embed=embedVar)
                         turn[0] = -1
                         reset()
+                        del in_game_players[white]
+                        del in_game_players[black]
                     elif board.can_claim_fifty_moves():
                         embedVar = discord.Embed(title='Chess Match',description=f'<@{white}> v <@{black}>\nStalemate',color=0x280738)
                         embedVar.add_field(name='Board',value=f'```{clean_board}```')
                         await message.channel.send(embed=embedVar)
                         turn[0] = -1
                         reset()
+                        del in_game_players[white]
+                        del in_game_players[black]
                     else:
                         embedVar = discord.Embed(title='Chess Match',description=f'<@{white}> v <@{black}>\nWhite\'s turn',color=0xCCCCFF)
                         embedVar.add_field(name='Board',value=f'```{clean_board}```')
@@ -231,6 +253,8 @@ async def on_message(message):
             await message.channel.send(f'Black resigns, <@{white}> wins')
             turn[0] = -1
             reset()
+            del in_game_players[white]
+            del in_game_players[black]
 
     elif str(message.author.id) in in_game_players and in_game_players[str(message.author.id)] == 'white' and turn[0] == 1 and message.content[len(prefix)-1] == prefix:
         if message.content[len(prefix):len(prefix) + len('resign')] == 'resign':
