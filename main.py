@@ -180,6 +180,8 @@ async def on_message(message):
             await message.channel.send(f'Black resigns, <@{white}> wins')
             turn[0] = -1
             reset()
+            del in_game_players[white]
+            del in_game_players[black]
             
     if str(message.author.id) in in_game_players and in_game_players[str(message.author.id)] == 'black' and turn[0] == 1 and message.content[len(prefix)-1] == prefix:
         white = ''
@@ -271,6 +273,9 @@ async def on_message(message):
             await message.channel.send(f'White resigns, <@{black}> wins')
             turn[0] = -1
             reset()
+            del in_game_players[white]
+            del in_game_players[black]
+
 
     if message.content == 'players' and message.author.id == 542033277163274260:
         await message.channel.send(in_game_players)
