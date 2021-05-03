@@ -64,7 +64,7 @@ async def on_message(message):
             await message.channel.send(f'<@{message.author.id}> challenged <@{message.mentions[0].id}> to a chess match, do you accept?')
 
     if str(message.author.id) in in_game_players and in_game_players[str(message.author.id)] == 'requestee' and message.content == 'no' or message.content == 'n':
-        in_game_players[str(message.author.id)] = ''
+        del in_game_players[str(message.author.id)]
         requestee = ''
         await message.channel.send('Request denied')
     
